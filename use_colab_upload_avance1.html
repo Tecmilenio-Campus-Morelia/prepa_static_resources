@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía: Valoración de Avance 1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F3F4F6; color: #1F2937; }
+        .chart-container { position: relative; width: 100%; max-width: 500px; margin: 0 auto; height: 250px; max-height: 300px; }
+        .window-mockup { border: 1px solid #E5E7EB; border-radius: 0.5rem; overflow: hidden; background: white; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .window-header { background: #F3F4F6; padding: 0.5rem; border-bottom: 1px solid #E5E7EB; display: flex; align-items: center; gap: 0.25rem; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .dot-red { background: #FF5F56; } .dot-yellow { background: #FFBD2E; } .dot-green { background: #27C93F; }
+        .bg-colab { background-color: #F9AB00; } 
+        .bg-canvas { background-color: #E72429; } 
+        .bg-drive { background-color: #1FA463; }
+    </style>
+    <!--
+        NARRATIVE PLAN:
+        1. Intro: Clear objective and direct link to the Google Colab assignment.
+        2. Step 1 (Copy to Drive): Mockup of the Colab 'File' menu showing 'Save a copy in Drive'.
+        3. Step 2 (Working in Colab): Mockup of a code cell with the play button to teach execution.
+        4. Step 3 (Download & Rename): Mockup of the 'File -> Download .ipynb' menu and renaming convention.
+        5. Step 4 (Upload to Canvas): Mockup of the Canvas LMS upload dropzone.
+        6. Data Viz: A Donut chart showing recommended time distribution to keep the SPA infographic style active.
+        
+        CHART SELECTION JUSTIFICATION:
+        Data Point: Time Distribution (Preparation vs Coding vs Delivery).
+        Goal: Compare/Show Composition.
+        Chosen Visualization: Donut Chart (Chart.js).
+        Justification: A donut chart perfectly illustrates parts of a whole (100% of the homework time), making it clear that coding takes the most time, but prep and delivery are crucial slices. SVG NOT USED. Canvas rendering configured.
+
+        CONFIRMATION: NEITHER Mermaid JS NOR SVG were used anywhere in the output. All UI mockups use structured HTML/CSS and Unicode.
+    -->
+</head>
+<body class="antialiased pb-20">
+
+    <header class="bg-gray-900 text-white pt-16 pb-12 px-4 text-center border-b-8 border-colab relative">
+        <div class="max-w-4xl mx-auto">
+            <span class="inline-block bg-colab text-gray-900 font-bold px-4 py-1 rounded-full mb-4 text-sm tracking-widest uppercase">Misión Asignada</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4">Valoración de Avance 1</h1>
+            <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">Sigue estos 4 pasos exactos para abrir tu examen, resolverlo y entregarlo correctamente en Canvas. ¡No te saltes ninguno!</p>
+            
+            <a href="https://colab.research.google.com/drive/1YX2aG9ok6o4l7VLAKDQfFqs-QC3rZ0vC?usp=sharing" target="_blank" class="inline-flex items-center gap-2 bg-white text-gray-900 font-bold text-lg py-4 px-8 rounded-xl shadow-lg hover:bg-gray-100 transition transform hover:-translate-y-1">
+                <span class="text-2xl">🔗</span> Abrir Enlace del Examen (Colab)
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 mt-12 space-y-16">
+
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div>
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-12 h-12 rounded-full bg-drive text-white flex items-center justify-center text-2xl font-bold shadow-lg">1</div>
+                    <h2 class="text-3xl font-bold">Guárdalo en tu Drive</h2>
+                </div>
+                <p class="text-gray-600 text-lg mb-4">El enlace que abriste es de <strong>solo lectura</strong>. Para poder editarlo y escribir tus respuestas, necesitas hacer tu propia copia.</p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 font-medium">
+                    <li>Ve al menú superior izquierdo.</li>
+                    <li>Haz clic en <strong>Archivo</strong>.</li>
+                    <li>Selecciona <span class="bg-green-100 text-green-800 px-2 py-1 rounded">Guardar una copia en Drive</span>.</li>
+                    <li>Se abrirá una nueva pestaña. <strong>¡Cierra la primera y trabaja en la nueva!</strong></li>
+                </ul>
+            </div>
+
+            <div class="window-mockup transform rotate-1 hover:rotate-0 transition duration-300">
+                <div class="window-header">
+                    <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
+                    <div class="ml-4 text-xs text-gray-500 font-mono">colab.research.google.com</div>
+                </div>
+                <div class="p-4 bg-white relative h-48">
+                    <div class="flex gap-4 text-sm text-gray-700 mb-2 font-medium">
+                        <div class="cursor-pointer bg-blue-50 px-2 py-1 rounded">Archivo</div>
+                        <div class="cursor-pointer px-2 py-1">Editar</div>
+                        <div class="cursor-pointer px-2 py-1">Ver</div>
+                    </div>
+                    <div class="absolute top-10 left-4 w-64 bg-white border shadow-2xl rounded text-sm z-10">
+                        <div class="p-2 text-gray-500 hover:bg-gray-100">Nuevo cuaderno</div>
+                        <div class="p-2 text-gray-500 hover:bg-gray-100 border-b">Abrir cuaderno</div>
+                        <div class="p-2 bg-green-50 text-green-700 font-bold flex items-center gap-2 hover:bg-green-100 cursor-pointer">
+                            <span>📁</span> Guardar una copia en Drive
+                        </div>
+                        <div class="p-2 text-gray-500 hover:bg-gray-100">Guardar</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div class="order-2 lg:order-1 window-mockup">
+                <div class="window-header">
+                    <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
+                    <div class="ml-4 text-xs text-gray-500 font-mono">Copia de Valoración_Avance_1.ipynb</div>
+                </div>
+                <div class="p-4 bg-gray-50 space-y-4">
+                    <div class="bg-white border rounded p-3 text-sm text-gray-700 shadow-sm">
+                        <h4 class="font-bold mb-1">Instrucciones:</h4>
+                        <p>Escribe un código que imprima tu nombre.</p>
+                    </div>
+                    <div class="flex gap-2 items-start relative">
+                        <div class="mt-1 w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer hover:bg-colab hover:text-white transition group relative">
+                            <span class="ml-1 text-sm font-black">▶</span>
+                            <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap">Ejecutar celda</div>
+                        </div>
+                        <div class="flex-grow bg-gray-900 rounded p-3 font-mono text-sm text-green-400">
+                            print(<span class="text-yellow-300">"¡Hola, este es mi examen!"</span>)
+                        </div>
+                    </div>
+                    <div class="ml-10 text-sm font-mono text-gray-600">¡Hola, este es mi examen!</div>
+                </div>
+            </div>
+
+            <div class="order-1 lg:order-2">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-12 h-12 rounded-full bg-colab text-white flex items-center justify-center text-2xl font-bold shadow-lg">2</div>
+                    <h2 class="text-3xl font-bold">Resuelve el Examen</h2>
+                </div>
+                <p class="text-gray-600 text-lg mb-4">Google Colab funciona con <strong>celdas</strong>. Algunas son de texto (instrucciones) y otras son de código (donde tú escribes).</p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 font-medium">
+                    <li>Lee las instrucciones en las celdas de texto.</li>
+                    <li>Escribe tu código Python en las celdas grises oscuras.</li>
+                    <li>Presiona el botón <strong>Play (▶)</strong> a la izquierda de la celda para probar tu código.</li>
+                    <li>Asegúrate de que no haya errores antes de continuar.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div>
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center text-2xl font-bold shadow-lg">3</div>
+                    <h2 class="text-3xl font-bold">Descarga y Renombra</h2>
+                </div>
+                <p class="text-gray-600 text-lg mb-4">¡Terminaste! Ahora debes bajar el archivo a tu computadora y ponerle el nombre correcto para que tu profesor pueda evaluarte.</p>
+                <div class="bg-blue-50 border-l-4 border-blue-600 p-4 mb-4 rounded">
+                    <p class="font-bold text-blue-900 mb-1">Formato obligatorio:</p>
+                    <p class="font-mono text-sm text-blue-800 bg-white p-2 rounded inline-block">nombre_completo_matricula.ipynb</p>
+                    <p class="text-xs mt-2 text-blue-700">Ejemplo: <span class="font-mono">Juan_Perez_Gomez_A0123456.ipynb</span></p>
+                </div>
+                <p class="text-gray-700">Ve a <strong>Archivo</strong> > <strong>Descargar</strong> > <strong>Descargar .ipynb</strong></p>
+            </div>
+
+            <div class="window-mockup transform -rotate-1 hover:rotate-0 transition duration-300">
+                <div class="window-header">
+                    <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
+                </div>
+                <div class="p-4 bg-white relative h-48">
+                    <div class="flex gap-4 text-sm text-gray-700 mb-2 font-medium">
+                        <div class="cursor-pointer bg-blue-50 px-2 py-1 rounded">Archivo</div>
+                    </div>
+                    <div class="absolute top-10 left-4 w-56 bg-white border shadow-2xl rounded text-sm z-10">
+                        <div class="p-2 text-gray-500 hover:bg-gray-100 border-b">Guardar</div>
+                        <div class="p-2 bg-blue-50 text-blue-800 font-bold flex justify-between items-center cursor-pointer">
+                            <span>Descargar</span> <span class="text-xs">▶</span>
+                        </div>
+                        <div class="absolute top-10 left-56 w-48 bg-white border shadow-xl rounded">
+                            <div class="p-2 bg-blue-100 text-blue-900 font-bold hover:bg-blue-200">💾 Descargar .ipynb</div>
+                            <div class="p-2 text-gray-500 hover:bg-gray-100">Descargar .py</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-white p-8 rounded-3xl shadow-xl border border-gray-100 mt-12 relative overflow-hidden">
+            <div class="absolute -right-10 -top-10 w-40 h-40 bg-canvas rounded-full opacity-10"></div>
+            
+            <div class="order-2 lg:order-1 relative">
+                <div class="border-4 border-dashed border-gray-300 rounded-2xl p-8 text-center bg-gray-50 hover:bg-red-50 hover:border-canvas transition cursor-pointer group">
+                    <div class="text-6xl mb-4 group-hover:scale-110 transition transform">☁️</div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-2">Arrastra tu archivo aquí</h4>
+                    <p class="text-sm text-gray-500 mb-6">O haz clic para buscar en tu equipo</p>
+                    <div class="bg-gray-200 text-gray-600 font-mono text-xs p-2 rounded max-w-xs mx-auto mb-6">Juan_Perez_A0123456.ipynb</div>
+                    <button class="bg-canvas text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-red-700 transition w-full max-w-xs">
+                        Entregar Tarea
+                    </button>
+                </div>
+            </div>
+
+            <div class="order-1 lg:order-2 relative z-10">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-12 h-12 rounded-full bg-canvas text-white flex items-center justify-center text-2xl font-bold shadow-lg">4</div>
+                    <h2 class="text-3xl font-bold">Sube tu archivo a Canvas</h2>
+                </div>
+                <p class="text-gray-600 text-lg mb-4">El paso final para asegurar tu calificación.</p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 font-medium">
+                    <li>Entra a la plataforma <strong>Canvas</strong> de tu escuela.</li>
+                    <li>Ve al módulo de tu materia y busca la sección <strong>Tareas</strong>.</li>
+                    <li>Abre la tarea llamada <span class="font-bold text-canvas">"Valoración de Avance 1"</span>.</li>
+                    <li>Sube el archivo <code>.ipynb</code> que acabas de renombrar.</li>
+                    <li>Haz clic en el botón rojo de "Entregar". ¡Y listo!</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center mt-20">
+        <p class="text-sm">Guía de Entrega de Evaluaciones en Google Colab y Canvas</p>
+        <p class="text-xs mt-2 opacity-50">Las interfaces mostradas son representaciones esquemáticas.</p>
+    </footer>
+
+</body>
+</html>
