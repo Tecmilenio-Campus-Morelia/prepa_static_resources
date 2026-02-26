@@ -3,242 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python: Listas y Matrices - Infografía Interactiva</title>
+    <title>Python: Listas y Matrices - Guía para Bachillerato</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Roboto', sans-serif; background-color: #F0F4F8; color: #102A43; }
+        body { font-family: 'Roboto', sans-serif; background-color: #F8FAFC; color: #1E293B; }
         .chart-container { 
             position: relative; 
             width: 100%; 
             max-width: 600px; 
             margin: 0 auto; 
-            height: 350px; 
+            height: 300px; 
             max-height: 400px;
         }
         .code-block { font-family: 'Courier New', Courier, monospace; }
-        /* Palette: Vibrant & Playful */
-        .bg-primary { background-color: #4ECDC4; } /* Teal */
+        /* Palette: Vibrant & Energetic */
+        .bg-primary { background-color: #4ECDC4; } 
         .text-primary { color: #4ECDC4; }
-        .bg-secondary { background-color: #FF6B6B; } /* Red/Pink */
+        .bg-secondary { background-color: #FF6B6B; } 
         .text-secondary { color: #FF6B6B; }
-        .bg-accent { background-color: #FFE66D; } /* Yellow */
-        .bg-dark { background-color: #1A535C; } /* Deep Blue */
-        .text-dark { color: #1A535C; }
-        .card-shadow { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .bg-accent { background-color: #FFE66D; } 
+        .bg-dark { background-color: #2D3436; } 
+        .card-shadow { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .step-node { @apply w-8 h-8 rounded-full flex items-center justify-center text-white font-bold; }
     </style>
     <!-- 
         NARRATIVE PLAN:
-        1. Intro: Hook the students with the importance of data structures.
-        2. Lists: Visualize the index-value relationship using a Bar Chart (Data: Length of fruit names).
-        3. Matrices: Visualize the coordinate system [row][col] using a Scatter/Bubble Chart.
-        4. f-strings: Compare old vs new syntax using code cards.
-        5. Loops: Visual flow of logic using HTML/CSS diagrams.
-        6. Control: Break vs Continue visualization using simple distinct blocks.
+        1. List Fundamentals: Analogies (Lockers), multi-line code, Temperature example.
+        2. Matrix Concepts: Analogies (Cinema seats), 2D grid visualization.
+        3. Iteration (Recorrido): Multi-line code blocks for FOR and WHILE loops.
+        4. Flow Control: Restored visual flowcharts for Break and Continue.
     -->
 </head>
-<body class="overflow-x-hidden">
+<body class="antialiased">
 
-    <!-- Header Section -->
-    <header class="bg-dark text-white p-8 text-center shadow-lg">
-        <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight"><span class="text-primary">PYTHON</span>: EL PODER DE LOS DATOS</h1>
-        <p class="text-xl md:text-2xl font-light text-gray-200 max-w-3xl mx-auto">Domina las Listas, Matrices y el Control de Flujo para convertirte en un experto programador.</p>
+    <!-- Hero Section -->
+    <header class="bg-dark text-white py-16 px-6 text-center shadow-2xl relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+            <div class="absolute top-10 left-10 text-6xl">[]</div>
+            <div class="absolute bottom-10 right-10 text-6xl">[[]]</div>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-black mb-4 tracking-tighter">PYTHON <span class="text-primary">ESSENTIALS</span></h1>
+        <p class="text-xl md:text-2xl font-light text-gray-400 max-w-2xl mx-auto italic">Domina las colecciones de datos, dimensiones y el control de flujos.</p>
     </header>
 
-    <div class="container mx-auto px-4 py-12 max-w-7xl">
+    <main class="container mx-auto px-4 py-12 max-w-7xl">
 
-        <!-- SECTION 1: LISTAS (THE FOUNDATION) -->
-        <section class="mb-20">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div>
+        <!-- SECTION 1: LISTAS -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-dark mb-8 border-b-4 border-primary inline-block">1. Listas: Tu primera colección</h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-4xl">
+                Imagina que una lista es como una fila de <strong>casilleros en tu escuela</strong>. Cada casillero tiene un número pintado en la puerta (el <strong>índice</strong>) y adentro puedes guardar cosas (el <strong>valor</strong>). ¡El único truco que debes recordar es que en programación, el primer casillero siempre es el número 0!
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Declaration & Init -->
+                <div class="bg-white p-6 rounded-2xl card-shadow flex flex-col">
                     <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">1</div>
-                        <h2 class="text-3xl font-bold text-dark">Listas: Tu Colección Ordenada</h2>
+                        <div class="bg-primary step-node mr-3">D</div>
+                        <h3 class="font-bold text-lg">Crear una Lista</h3>
                     </div>
-                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-                        Una lista es como una estantería numerada. Puedes guardar cualquier tipo de dato (texto, números) y encontrarlos siempre en el mismo orden. Recuerda la regla de oro: <strong>¡Los índices siempre empiezan en 0!</strong>
-                    </p>
-                    <div class="bg-white p-6 rounded-lg card-shadow border-l-4 border-secondary">
-                        <h3 class="font-bold text-lg mb-2 text-secondary">Sintaxis Clave</h3>
-                        <p class="code-block text-gray-800 bg-gray-100 p-2 rounded mb-2">frutas = ["manzana", "pera", "plátano"]</p>
-                        <p class="text-sm text-gray-600">Acceso: <span class="code-block bg-gray-200 px-1">frutas[0]</span> es "manzana"</p>
+                    <p class="text-sm text-gray-600 mb-4 flex-grow">Se definen usando corchetes <code>[]</code>. Vamos a guardar las temperaturas de los primeros tres días de la semana.</p>
+                    <div class="bg-gray-50 p-4 rounded-lg font-mono text-xs border border-gray-200">
+                        <p class="text-blue-600"># Lunes: 22°, Martes: 25°, Miércoles: 19°</p>
+                        <p>temps = [<span class="text-secondary">22</span>, <span class="text-secondary">25</span>, <span class="text-secondary">19</span>]</p>
                     </div>
                 </div>
-                
-                <!-- Visualization: List Indices vs Values -->
-                <div class="bg-white p-4 rounded-xl card-shadow">
-                    <h4 class="text-center font-bold text-gray-500 mb-4 text-sm uppercase tracking-wide">Visualización de Índices y Longitud de Datos</h4>
+
+                <!-- Access & Assignment -->
+                <div class="bg-white p-6 rounded-2xl card-shadow flex flex-col">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-secondary step-node mr-3">A</div>
+                        <h3 class="font-bold text-lg">Leer y Modificar</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4 flex-grow">Usa el número del "casillero" (índice) entre corchetes para ver qué hay adentro o cambiarlo.</p>
+                    <div class="bg-gray-50 p-4 rounded-lg font-mono text-xs border border-gray-200">
+                        <p class="text-blue-600"># Leer la temperatura del Martes (índice 1)</p>
+                        <p>martes = temps[<span class="text-primary">1</span>]</p>
+                        <p class="text-blue-600 mt-2"># Corregir el Lunes (índice 0) a 24°</p>
+                        <p>temps[<span class="text-primary">0</span>] = <span class="text-secondary">24</span></p>
+                    </div>
+                </div>
+
+                <!-- Visual: List Indexing -->
+                <div class="bg-white p-4 rounded-2xl card-shadow flex flex-col items-center">
+                    <h4 class="text-xs font-bold text-gray-400 uppercase mb-2">Gráfica: Índices vs Valores</h4>
+                    <p class="text-[10px] text-gray-500 mb-4 text-center">Observa cómo cada "casillero" (Día 0, 1, 2) guarda un valor (Temperatura).</p>
                     <div class="chart-container">
                         <canvas id="listChart"></canvas>
                     </div>
-                    <p class="text-center text-xs text-gray-400 mt-2">La altura representa la cantidad de letras, el eje X es el índice.</p>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 2: MATRICES (LEVEL UP) -->
-        <section class="mb-20 bg-white p-8 rounded-3xl card-shadow relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-primary opacity-10 rounded-full -mr-20 -mt-20"></div>
-            
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <div class="inline-block bg-primary text-white px-4 py-1 rounded-full text-sm font-bold mb-4">NIVEL AVANZADO</div>
-                <h2 class="text-4xl font-bold text-dark mb-4">Matrices: Listas de Listas</h2>
-                <p class="text-xl text-gray-600">
-                    Una matriz es una cuadrícula de datos. Imagínala como una hoja de cálculo o un tablero de ajedrez. Para acceder a un dato, necesitas dos coordenadas: <code>[fila][columna]</code>.
-                </p>
-            </div>
-
+        <!-- SECTION 2: MATRICES -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-dark mb-4 border-b-4 border-secondary inline-block">2. Matrices: Agregando otra dimensión</h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-4xl">
+                Si una lista es una fila de casilleros, una matriz es como los <strong>asientos de un cine</strong> o un tablero de ajedrez. Para encontrar tu lugar, ya no basta con un solo número; necesitas saber la <strong>fila</strong> y la <strong>columna</strong> (el número de asiento). ¡Es una lista que adentro tiene más listas!
+            </p>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Code Representation -->
-                <div class="flex flex-col justify-center">
-                    <div class="bg-gray-900 text-green-400 p-6 rounded-lg font-mono text-sm shadow-xl border border-gray-700 relative">
-                        <div class="flex space-x-2 mb-4">
-                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                
+                <!-- Concepts -->
+                <div class="space-y-6 flex flex-col justify-center">
+                    <div class="bg-white p-6 rounded-2xl card-shadow border-t-4 border-secondary">
+                        <h3 class="font-bold text-xl mb-4">Sintaxis de Matrices</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Se accede siempre primero a la Fila (hacia abajo) y luego a la Columna (hacia la derecha): <code>matriz[fila][columna]</code>.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-gray-900 text-white p-4 rounded-xl text-xs font-mono">
+                                <p class="text-gray-500"># Creando un tablero 2x3</p>
+                                <p>tablero = [</p>
+                                <p class="pl-4">[<span class="text-accent">1</span>, <span class="text-accent">2</span>, <span class="text-accent">3</span>], <span class="text-gray-500"># Fila 0</span></p>
+                                <p class="pl-4">[<span class="text-accent">4</span>, <span class="text-accent">5</span>, <span class="text-accent">6</span>]  <span class="text-gray-500"># Fila 1</span></p>
+                                <p>]</p>
+                            </div>
+                            <div class="bg-gray-900 text-white p-4 rounded-xl text-xs font-mono flex flex-col justify-center">
+                                <p class="text-gray-500"># Acceder al número 6</p>
+                                <p>dato = tablero[<span class="text-primary">1</span>][<span class="text-primary">2</span>]</p>
+                                <p class="text-gray-500 mt-2"># Cambiar el 2 por un 9</p>
+                                <p>tablero[<span class="text-primary">0</span>][<span class="text-primary">1</span>] = 9</p>
+                            </div>
                         </div>
-                        <p><span class="text-pink-500">matriz</span> = [</p>
-                        <p class="pl-4">&nbsp;&nbsp;[<span class="text-yellow-300">1</span>, <span class="text-yellow-300">2</span>, <span class="text-yellow-300">3</span>], <span class="text-gray-500"># Fila 0</span></p>
-                        <p class="pl-4">&nbsp;&nbsp;[<span class="text-yellow-300">4</span>, <span class="text-yellow-300">5</span>, <span class="text-yellow-300">6</span>], <span class="text-gray-500"># Fila 1</span></p>
-                        <p class="pl-4">&nbsp;&nbsp;[<span class="text-yellow-300">7</span>, <span class="text-yellow-300">8</span>, <span class="text-yellow-300">9</span>] &nbsp;<span class="text-gray-500"># Fila 2</span></p>
-                        <p>]</p>
-                        <p class="mt-4 text-white"># Acceder al centro (5):</p>
-                        <p>centro = <span class="text-pink-500">matriz</span>[<span class="text-blue-400">1</span>][<span class="text-blue-400">1</span>]</p>
                     </div>
                 </div>
 
-                <!-- Visualization: Matrix Grid -->
-                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                    <h4 class="text-center font-bold text-gray-500 mb-4 text-sm uppercase tracking-wide">Mapa de Coordenadas de la Matriz</h4>
+                <!-- Matrix Chart -->
+                <div class="bg-white p-6 rounded-2xl card-shadow flex flex-col items-center justify-center">
+                    <h4 class="text-xs font-bold text-gray-400 uppercase mb-2">Mapa Espacial de la Matriz</h4>
+                    <p class="text-[10px] text-gray-500 mb-4 text-center">Observa cómo cada burbuja requiere dos coordenadas (X e Y) para existir.</p>
                     <div class="chart-container">
                         <canvas id="matrixChart"></canvas>
                     </div>
-                    <p class="text-center text-xs text-gray-400 mt-2">Cada burbuja es un valor en su posición [Fila, Columna].</p>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 3: F-STRINGS (MODERN PYTHON) -->
-        <section class="mb-20">
-            <h2 class="text-3xl font-bold text-dark mb-8 text-center">Moderniza tu Código: f-strings</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Old Way -->
-                <div class="bg-gray-200 p-6 rounded-lg opacity-70 hover:opacity-100 transition duration-300">
-                    <h3 class="font-bold text-gray-600 mb-4">🚫 La forma antigua (Difícil)</h3>
-                    <p class="code-block text-sm text-gray-700 bg-white p-4 rounded border border-gray-300">
-                        nombre = "Juan"<br>
-                        puntos = 10<br>
-                        print("Hola " + nombre + ", tienes " + str(puntos) + " pts.")
-                    </p>
-                    <p class="mt-2 text-sm text-red-500 font-bold">❌ Propenso a errores, difícil de leer.</p>
-                </div>
-
-                <!-- New Way -->
-                <div class="bg-green-100 p-6 rounded-lg border-2 border-green-400 transform scale-105 shadow-xl">
-                    <h3 class="font-bold text-green-800 mb-4">✅ La forma Python 3.6+ (f-strings)</h3>
-                    <p class="code-block text-sm text-gray-900 bg-white p-4 rounded border border-green-200 shadow-sm">
-                        nombre = "Juan"<br>
-                        puntos = 10<br>
-                        print(<span class="text-blue-600">f</span>"Hola <span class="text-pink-600">{nombre}</span>, tienes <span class="text-pink-600">{puntos}</span> pts.")
-                    </p>
-                    <p class="mt-2 text-sm text-green-700 font-bold">✨ Limpio, rápido y legible.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 4: LOOPS & CONTROL (THE ENGINE) -->
-        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <!-- SECTION 3: RECORRIDO Y CONTROL -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-dark mb-4 border-b-4 border-accent inline-block">3. Ciclos: Automatizando el trabajo</h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-4xl">
+                Los ciclos (o bucles) son los motores de la programación. Nos permiten indicarle a Python que repita una acción muchas veces sin tener que escribir el código una y otra vez. Es la forma en la que "recorremos" o revisamos todos los datos de nuestras listas.
+            </p>
             
-            <!-- Ciclos Info -->
-            <div class="lg:col-span-1 bg-dark text-white p-8 rounded-2xl flex flex-col justify-center">
-                <h2 class="text-3xl font-bold mb-6 text-primary">Ciclos y Control</h2>
-                <p class="mb-6 opacity-90">Los ciclos nos permiten automatizar tareas repetitivas. Recorrer una lista de 1000 alumnos toma el mismo esfuerzo que una de 3.</p>
-                <ul class="space-y-4">
-                    <li class="flex items-center">
-                        <span class="w-8 h-8 rounded bg-primary text-dark font-bold flex items-center justify-center mr-3">F</span>
-                        <span><strong>FOR:</strong> Para cuando sabes cuántas veces repetir (recorrer listas).</span>
-                    </li>
-                    <li class="flex items-center">
-                        <span class="w-8 h-8 rounded bg-secondary text-white font-bold flex items-center justify-center mr-3">W</span>
-                        <span><strong>WHILE:</strong> Para cuando repites hasta cumplir una condición.</span>
-                    </li>
-                </ul>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- FOR Loop -->
+                <div class="bg-white p-8 rounded-2xl card-shadow border-l-4 border-primary">
+                    <h3 class="font-bold text-xl mb-2 text-primary">El Ciclo FOR</h3>
+                    <p class="text-sm text-gray-600 mb-4">Es el ciclo definido. Úsalo cuando sepas exactamente cuántos elementos tienes que revisar (por ejemplo, recorrer todos los elementos de una lista, uno por uno).</p>
+                    <pre class="bg-gray-900 text-white p-4 rounded-xl text-sm font-mono overflow-x-auto"><code><span class="text-primary">for</span> temperatura <span class="text-primary">in</span> temps:
+    <span class="text-gray-500"># Este bloque se repite por cada dato</span>
+    print(<span class="text-accent">f"Hizo {temperatura} grados"</span>)</code></pre>
+                </div>
+
+                <!-- WHILE Loop -->
+                <div class="bg-white p-8 rounded-2xl card-shadow border-l-4 border-secondary">
+                    <h3 class="font-bold text-xl mb-2 text-secondary">El Ciclo WHILE</h3>
+                    <p class="text-sm text-gray-600 mb-4">Es el ciclo condicional. Úsalo cuando quieres que algo se repita <em>mientras</em> una condición siga siendo verdad. Requiere que controles manualmente el índice.</p>
+                    <pre class="bg-gray-900 text-white p-4 rounded-xl text-sm font-mono overflow-x-auto"><code>i = <span class="text-accent">0</span>
+<span class="text-secondary">while</span> i < len(temps):
+    print(temps[i])
+    i += <span class="text-accent">1</span>  <span class="text-gray-500"># ¡No olvides sumar, o será infinito!</span></code></pre>
+                </div>
             </div>
 
-            <!-- Visualization: Break vs Continue Logic -->
-            <div class="lg:col-span-2 bg-white p-8 rounded-2xl card-shadow">
-                <h3 class="text-xl font-bold text-gray-700 mb-6 text-center">Diagrama de Flujo: Break vs Continue</h3>
+            <!-- Break & Continue Flowcharts -->
+            <div class="bg-gray-100 p-8 rounded-2xl border border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Control Especial: Break y Continue</h3>
+                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">A veces necesitas saltarte las reglas normales de los ciclos. Aquí es donde entran estos dos comandos especiales que alteran el flujo de ejecución.</p>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    
                     <!-- Continue Flow -->
-                    <div class="border-2 border-dashed border-gray-300 rounded-xl p-4 flex flex-col items-center">
-                        <div class="bg-accent text-dark font-bold py-2 px-6 rounded-full mb-4 shadow-sm">CONTINUE</div>
-                        <p class="text-center text-sm text-gray-500 mb-4">"Salta esta vuelta"</p>
+                    <div class="bg-white border-2 border-dashed border-primary rounded-xl p-6 flex flex-col items-center card-shadow">
+                        <div class="bg-primary text-white font-bold py-2 px-8 rounded-full mb-4 text-xl tracking-wider">CONTINUE</div>
+                        <p class="text-center text-sm text-gray-600 mb-6 h-10">Ignora el resto del código en esta iteración y <strong>salta a la siguiente vuelta</strong> del ciclo inmediatamente.</p>
                         
                         <!-- Structured HTML Flowchart -->
-                        <div class="w-full max-w-[200px] flex flex-col items-center space-y-2">
-                            <div class="w-full bg-gray-200 p-2 text-center text-xs rounded">Inicio Ciclo</div>
-                            <div class="text-gray-400">↓</div>
-                            <div class="w-full bg-gray-100 p-2 text-center text-xs rounded border border-gray-300">¿Condición especial?</div>
-                            <div class="text-gray-400">↓ (Sí)</div>
-                            <div class="w-full bg-accent text-dark p-2 text-center text-xs font-bold rounded shadow-md transform -rotate-1">SALTAR CÓDIGO</div>
-                            <div class="text-gray-400">↓</div>
-                            <div class="w-full bg-gray-200 p-2 text-center text-xs rounded">Siguiente Vuelta</div>
+                        <div class="w-full flex flex-col items-center space-y-2 text-sm">
+                            <div class="w-48 bg-gray-200 p-2 text-center rounded">Inicio de la vuelta</div>
+                            <div class="text-primary font-bold">↓</div>
+                            <div class="w-48 bg-white p-2 text-center rounded border-2 border-gray-300">¿Es un número par?</div>
+                            <div class="text-primary font-bold">↓ (Sí)</div>
+                            <div class="w-56 bg-primary text-white p-3 text-center font-bold rounded-lg shadow-md transform -rotate-2">EJECUTAR CONTINUE</div>
+                            <div class="text-primary font-bold">↓</div>
+                            <div class="w-48 bg-gray-200 p-2 text-center rounded opacity-50 line-through">Imprimir número</div>
+                            <div class="text-primary font-bold text-2xl mt-2 animate-bounce">↺</div>
+                            <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Regresa al inicio</div>
                         </div>
                     </div>
 
                     <!-- Break Flow -->
-                    <div class="border-2 border-dashed border-gray-300 rounded-xl p-4 flex flex-col items-center">
-                        <div class="bg-secondary text-white font-bold py-2 px-6 rounded-full mb-4 shadow-sm">BREAK</div>
-                        <p class="text-center text-sm text-gray-500 mb-4">"Rompe el ciclo"</p>
+                    <div class="bg-white border-2 border-dashed border-secondary rounded-xl p-6 flex flex-col items-center card-shadow">
+                        <div class="bg-secondary text-white font-bold py-2 px-8 rounded-full mb-4 text-xl tracking-wider">BREAK</div>
+                        <p class="text-center text-sm text-gray-600 mb-6 h-10">Es el freno de emergencia. <strong>Destruye y finaliza</strong> el ciclo por completo, aunque falten elementos por revisar.</p>
                         
                         <!-- Structured HTML Flowchart -->
-                        <div class="w-full max-w-[200px] flex flex-col items-center space-y-2">
-                            <div class="w-full bg-gray-200 p-2 text-center text-xs rounded">Inicio Ciclo</div>
-                            <div class="text-gray-400">↓</div>
-                            <div class="w-full bg-gray-100 p-2 text-center text-xs rounded border border-gray-300">¿Encontrado?</div>
-                            <div class="text-gray-400">↓ (Sí)</div>
-                            <div class="w-full bg-secondary text-white p-2 text-center text-xs font-bold rounded shadow-md transform rotate-1">DETENER TODO</div>
-                            <div class="text-gray-400">↓</div>
-                            <div class="w-full bg-dark text-white p-2 text-center text-xs rounded">Salir del Ciclo</div>
+                        <div class="w-full flex flex-col items-center space-y-2 text-sm">
+                            <div class="w-48 bg-gray-200 p-2 text-center rounded">Inicio de la vuelta</div>
+                            <div class="text-secondary font-bold">↓</div>
+                            <div class="w-48 bg-white p-2 text-center rounded border-2 border-gray-300">¿Encontré lo que buscaba?</div>
+                            <div class="text-secondary font-bold">↓ (Sí)</div>
+                            <div class="w-56 bg-secondary text-white p-3 text-center font-bold rounded-lg shadow-md transform rotate-2">EJECUTAR BREAK</div>
+                            <div class="text-secondary font-bold">↓</div>
+                            <div class="w-48 bg-dark text-white p-2 text-center rounded mt-4">Salir del ciclo completo</div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 5: CHART ANALYSIS -->
-        <section class="bg-gray-100 p-8 rounded-lg mb-12">
-             <div class="flex items-start">
-                 <div class="text-4xl mr-4">💡</div>
-                 <div>
-                     <h3 class="font-bold text-xl mb-2">Análisis de la Estructura</h3>
-                     <p class="text-gray-700">
-                         Los gráficos mostrados arriba no son solo decorativos. El <strong>Gráfico de Barras</strong> demuestra cómo cada índice (0, 1, 2) corresponde a un valor único y específico, y cómo podemos analizar propiedades de esos datos (como la longitud del texto). El <strong>Gráfico de Dispersión (Matriz)</strong> es fundamental para entender que una matriz es espacial: necesita un eje X (Columnas) y un eje Y (Filas) para ubicar un dato, igual que en un plano cartesiano.
-                     </p>
-                 </div>
-             </div>
-        </section>
+    </main>
 
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-gray-400 py-8 text-center border-t border-gray-800">
-        <p class="mb-2">Guía Educativa de Python para Bachillerato</p>
-        <p class="text-sm">Creado con 💻 y ❤️ para aprender código.</p>
-        <!-- Confirmation: NEITHER Mermaid JS NOR SVG were used in this output. -->
-        <!-- Palette Name: Vibrant EdTech (Custom based on request) -->
+    <footer class="bg-dark text-gray-500 py-10 text-center border-t border-gray-800">
+        <p class="text-sm mb-2">Infografía de Python para Bachillerato - Diseñado para fácil asimilación</p>
+        <p class="text-xs">Sin uso de SVG ni Mermaid JS | Canvas Rendering Active</p>
     </footer>
 
     <script>
-        // Utility: Label Wrapping for Chart.js > 16 chars
+        // --- HELPER FUNCTIONS ---
         const wrapLabel = (str) => {
             if (str.length <= 16) return str;
             const words = str.split(' ');
             const lines = [];
             let currentLine = words[0];
-
             for (let i = 1; i < words.length; i++) {
                 if (currentLine.length + 1 + words[i].length <= 16) {
                     currentLine += ' ' + words[i];
@@ -251,40 +240,32 @@
             return lines;
         };
 
-        // Common Tooltip Config
         const tooltipConfig = {
-            callbacks: {
-                title: function(tooltipItems) {
-                    const item = tooltipItems[0];
-                    let label = item.chart.data.labels ? item.chart.data.labels[item.dataIndex] : '';
-                    // For Scatter plots, we might need a different approach, handled in specific chart config
-                    if (!label && item.raw && item.raw.label) label = item.raw.label; 
-                    
-                    if (Array.isArray(label)) {
-                        return label.join(' ');
-                    } else {
-                        return label;
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels ? item.chart.data.labels[item.dataIndex] : '';
+                            if (Array.isArray(label)) return label.join(' ');
+                            return label;
+                        }
                     }
                 }
             }
         };
 
-        // --- CHART 1: LIST INDICES (Bar Chart) ---
+        // --- CHART 1: LIST VISUALIZATION (Temperatures) ---
         const listCtx = document.getElementById('listChart').getContext('2d');
-        const listLabels = ["manzana (0)", "pera (1)", "plátano (2)"];
-        const processedListLabels = listLabels.map(wrapLabel);
-        
         new Chart(listCtx, {
             type: 'bar',
             data: {
-                labels: processedListLabels,
+                labels: ["Día 0 (Lunes)", "Día 1 (Martes)", "Día 2 (Miérc)"].map(wrapLabel),
                 datasets: [{
-                    label: 'Letras en la palabra',
-                    data: [7, 4, 7], // Length of strings
+                    label: 'Temperatura (°C)',
+                    data: [22, 25, 19],
                     backgroundColor: ['#4ECDC4', '#FF6B6B', '#FFE66D'],
-                    borderColor: '#1A535C',
-                    borderWidth: 1,
-                    borderRadius: 8
+                    borderRadius: 10
                 }]
             },
             options: {
@@ -292,54 +273,33 @@
                 maintainAspectRatio: false,
                 plugins: {
                     legend: { display: false },
-                    tooltip: tooltipConfig,
-                    title: {
-                        display: true,
-                        text: 'Relación Índice vs. Datos (Ejemplo Frutas)',
-                        color: '#1A535C',
-                        font: { size: 16 }
-                    }
+                    ...tooltipConfig.plugins
                 },
                 scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: { display: true, text: 'Cantidad de Letras' }
-                    },
-                    x: {
-                        title: { display: true, text: 'Índice de la Lista' }
+                    y: { 
+                        beginAtZero: true, 
+                        title: { display: true, text: 'Grados Celsius (°C)' } 
                     }
                 }
             }
         });
 
-        // --- CHART 2: MATRIX COORDINATES (Bubble/Scatter Chart) ---
+        // --- CHART 2: MATRIX VISUALIZATION ---
         const matrixCtx = document.getElementById('matrixChart').getContext('2d');
-        
-        // Data representing:
-        // [1, 2, 3] (Row 0)
-        // [4, 5, 6] (Row 1)
-        // [7, 8, 9] (Row 2)
-        // Formatted for Scatter: x=col, y=row (inverted visual logic often helps, but let's stick to standard Y is up. We will label Y axis 0, 1, 2 downwards if possible or just standard 0,1,2)
-        // Let's assume (0,0) is bottom left for the chart, but matrices are top-left. We will map row 0 to y=2, row 1 to y=1, row 2 to y=0 to mimic matrix layout visually.
-        
-        const matrixData = [
-            { x: 0, y: 2, r: 10, v: 1, row: 0, col: 0 }, { x: 1, y: 2, r: 12, v: 2, row: 0, col: 1 }, { x: 2, y: 2, r: 14, v: 3, row: 0, col: 2 },
-            { x: 0, y: 1, r: 16, v: 4, row: 1, col: 0 }, { x: 1, y: 1, r: 18, v: 5, row: 1, col: 1 }, { x: 2, y: 1, r: 20, v: 6, row: 1, col: 2 },
-            { x: 0, y: 0, r: 22, v: 7, row: 2, col: 0 }, { x: 1, y: 0, r: 24, v: 8, row: 2, col: 1 }, { x: 2, y: 0, r: 26, v: 9, row: 2, col: 2 }
+        const matrixPoints = [
+            { x: 0, y: 0, r: 15, v: 1 }, { x: 1, y: 0, r: 15, v: 2 }, { x: 2, y: 0, r: 15, v: 3 },
+            { x: 0, y: 1, r: 15, v: 4 }, { x: 1, y: 1, r: 15, v: 5 }, { x: 2, y: 1, r: 15, v: 6 }
         ];
 
         new Chart(matrixCtx, {
             type: 'bubble',
             data: {
                 datasets: [{
-                    label: 'Valores de la Matriz',
-                    data: matrixData,
+                    label: 'Datos de la Matriz',
+                    data: matrixPoints,
                     backgroundColor: function(context) {
-                        // Alternate colors for rows for clarity
-                        const val = context.raw?.row;
-                        return val === 0 ? '#4ECDC4' : val === 1 ? '#FFE66D' : '#FF6B6B';
-                    },
-                    borderColor: '#1A535C'
+                        return context.raw.y === 0 ? '#4ECDC4' : '#FF6B6B';
+                    }
                 }]
             },
             options: {
@@ -349,45 +309,22 @@
                     legend: { display: false },
                     tooltip: {
                         callbacks: {
-                            title: function(tooltipItems) {
-                                return `Valor: ${tooltipItems[0].raw.v}`;
-                            },
                             label: function(context) {
-                                const d = context.raw;
-                                return `Fila: ${d.row}, Columna: ${d.col} (matriz[${d.row}][${d.col}])`;
+                                return `Fila ${context.raw.y}, Col ${context.raw.x} -> Valor guardado: ${context.raw.v}`;
                             }
                         }
-                    },
-                    title: {
-                        display: true,
-                        text: 'Visualización Espacial de la Matriz (3x3)',
-                        color: '#1A535C',
-                        font: { size: 16 }
                     }
                 },
                 scales: {
                     x: {
-                        type: 'linear',
-                        position: 'bottom',
-                        title: { display: true, text: 'Columna (Índice)' },
-                        min: -0.5,
-                        max: 2.5,
-                        ticks: { stepSize: 1, callback: function(val) { return Number.isInteger(val) ? val : ''; } }
+                        min: -0.5, max: 2.5,
+                        title: { display: true, text: 'Columnas (Asientos)' },
+                        ticks: { stepSize: 1 }
                     },
                     y: {
-                        title: { display: true, text: 'Fila (Visualización Invertida)' },
-                        min: -0.5,
-                        max: 2.5,
-                        ticks: { 
-                            stepSize: 1, 
-                            callback: function(val) { 
-                                // Mapping visual Y to logical Row: 0->Row 2, 1->Row 1, 2->Row 0
-                                if (val === 0) return 'Fila 2';
-                                if (val === 1) return 'Fila 1';
-                                if (val === 2) return 'Fila 0';
-                                return '';
-                            } 
-                        }
+                        min: -0.5, max: 1.5,
+                        title: { display: true, text: 'Filas' },
+                        ticks: { stepSize: 1 }
                     }
                 }
             }
