@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Geometría y Construcción de Triángulos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-cyan-200">
+
+    <!-- 
+    Palette: Vibrant Teal, Indigo & Rose.
+    Plan Summary: 
+    1. Header/Intro: Sets the context of triangle congruence.
+    2. Unique Triangles: CSS Grid of informational cards (Goal: Organize/Inform).
+    3. The Ambiguous Case: Uses Chart.js Bar Chart to visualize the number of outcomes based on LLA conditions (Goal: Compare).
+    4. Impossible Triangles: CSS Grid of warning cards (Goal: Organize).
+    5. Quick Reference: HTML Table (Goal: Organize).
+    Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in the output.
+    -->
+
+    <nav class="sticky top-0 z-50 bg-indigo-900 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-wider flex items-center gap-2">
+                <span class="text-2xl">📐</span> GeoMetrics
+            </div>
+            <div class="hidden md:flex gap-6 text-sm font-medium">
+                <a href="#unicos" class="hover:text-cyan-300 transition-colors">Triángulos Únicos</a>
+                <a href="#ambiguo" class="hover:text-cyan-300 transition-colors">El Caso Ambiguo</a>
+                <a href="#imposibles" class="hover:text-cyan-300 transition-colors">Casos Imposibles</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-indigo-800 text-white py-20 px-6 text-center border-b-8 border-cyan-400">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">Guía Práctica: Construcción de Triángulos</h1>
+            <p class="text-lg md:text-2xl text-indigo-100 mb-8 font-light">
+                Descubre cómo las medidas de lados y ángulos determinan si un triángulo es único, ambiguo o geométricamente imposible.
+            </p>
+            <div class="inline-block bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
+                <p class="text-sm uppercase tracking-widest font-semibold text-cyan-300">Análisis de Criterios de Congruencia</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12 space-y-24">
+
+        <section id="unicos" class="scroll-mt-24">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-indigo-900 mb-4 flex items-center justify-center gap-3">
+                    <span>📏</span> Configuraciones con Triángulo Único
+                </h2>
+                <p class="text-slate-600 text-lg">
+                    En estos tres escenarios geométricos fundamentales, si las medidas cumplen con las reglas básicas de la desigualdad triangular, el triángulo resultante es <strong>absolutamente único</strong>. No existe margen para la ambigüedad; la forma y el tamaño están completamente definidos.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-xl border-t-4 border-emerald-500 p-8 transform transition hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-2xl font-bold mb-6">LLL</div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Lado-Lado-Lado</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Siempre que la suma de los dos lados más cortos sea mayor al lado más largo, los tres segmentos se conectarán en una única configuración posible.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-xl border-t-4 border-cyan-500 p-8 transform transition hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-cyan-100 text-cyan-600 rounded-full flex items-center justify-center text-2xl font-bold mb-6">ALA</div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Ángulo-Lado-Ángulo</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Si la suma de los dos ángulos conocidos es menor a 180°, el tercer ángulo se define automáticamente. Los lados resultantes solo pueden tener una longitud específica.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-xl border-t-4 border-indigo-500 p-8 transform transition hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-2xl font-bold mb-6">LAL</div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Lado-Ángulo-Lado</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        El ángulo está "atrapado" entre los dos lados conocidos. Esto fija irrevocablemente la distancia entre los extremos de esos lados, cerrando el triángulo de una sola forma.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ambiguo" class="scroll-mt-24">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100">
+                <div class="bg-amber-400 p-8 md:p-12 text-center">
+                    <h2 class="text-3xl font-bold text-amber-950 mb-4 flex items-center justify-center gap-3">
+                        <span>⚖️</span> El Caso Ambiguo: LLA
+                    </h2>
+                    <p class="text-amber-900 text-lg max-w-3xl mx-auto">
+                        Este es el único escenario geométrico donde pueden formarse <strong>cero, uno o dos triángulos</strong>. Ocurre cuando conocemos dos lados y un ángulo que <strong>no</strong> se encuentra entre ellos (Lado-Lado-Ángulo).
+                    </p>
+                </div>
+
+                <div class="p-8 md:p-12">
+                    <div class="mb-12 bg-slate-50 p-6 rounded-xl border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Fórmula Crítica: La Altura Teórica</h3>
+                            <p class="text-slate-600">Para analizar el caso LLA (conociendo el lado <strong>a</strong>, el lado <strong>b</strong> y el ángulo <strong>A</strong> opuesto a <em>a</em>), primero debemos calcular la altura teórica (<strong>h</strong>) del triángulo potencial.</p>
+                        </div>
+                        <div class="bg-indigo-900 text-white text-2xl md:text-3xl font-mono font-bold py-4 px-8 rounded-lg shadow-inner">
+                            h = b · sen(A)
+                        </div>
+                    </div>
+
+                    <div class="mb-8 text-center">
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">Resultados Posibles según Condiciones</h3>
+                        <p class="text-slate-600 mb-8 max-w-2xl mx-auto">La siguiente gráfica ilustra cuántos triángulos se pueden formar dependiendo de si el ángulo A es agudo u obtuso, y la relación de longitud entre el lado opuesto (a), el lado adyacente (b) y la altura (h).</p>
+                    </div>
+
+                    <div class="chart-container mb-12">
+                        <canvas id="ambiguousChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="imposibles" class="scroll-mt-24">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-rose-600 mb-4 flex items-center justify-center gap-3">
+                    <span>⚠️</span> Cómo Identificar Triángulos Imposibles
+                </h2>
+                <p class="text-slate-600 text-lg">
+                    Incluso si las medidas parecen normales, existen reglas geométricas inquebrantables que invalidan la existencia de un triángulo. Aquí te mostramos los cuatro errores más comunes que resultan en figuras imposibles de construir.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-rose-50 border border-rose-200 rounded-2xl p-6 flex flex-col h-full">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="bg-rose-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg">A</div>
+                        <h3 class="text-xl font-bold text-rose-900">Desigualdad Triangular (LLL)</h3>
+                    </div>
+                    <p class="text-rose-800 mb-4 flex-grow">Para que tres segmentos cierren un triángulo, la suma de los dos lados más cortos siempre debe ser mayor que el lado más largo.</p>
+                    <div class="bg-white p-4 rounded-lg border border-rose-100">
+                        <p class="text-sm font-bold text-rose-600 uppercase mb-1">Es imposible si:</p>
+                        <p class="text-lg font-mono text-slate-800 bg-slate-100 p-2 rounded text-center">a + b ≤ c</p>
+                        <p class="text-sm text-slate-500 mt-2">Ejemplo: Lados 3, 4 y 10. Las puntas nunca se tocarán (3 + 4 = 7 < 10).</p>
+                    </div>
+                </div>
+
+                <div class="bg-rose-50 border border-rose-200 rounded-2xl p-6 flex flex-col h-full">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="bg-rose-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg">B</div>
+                        <h3 class="text-xl font-bold text-rose-900">Suma de Ángulos (ALA)</h3>
+                    </div>
+                    <p class="text-rose-800 mb-4 flex-grow">En la geometría plana, los ángulos internos deben sumar exactamente 180°.</p>
+                    <div class="bg-white p-4 rounded-lg border border-rose-100">
+                        <p class="text-sm font-bold text-rose-600 uppercase mb-1">Es imposible si:</p>
+                        <p class="text-lg font-mono text-slate-800 bg-slate-100 p-2 rounded text-center">Suma Ángulos ≥ 180°</p>
+                        <p class="text-sm text-slate-500 mt-2">Ejemplo: Ángulos de 110° y 70°. No queda espacio para el tercer ángulo.</p>
+                    </div>
+                </div>
+
+                <div class="bg-rose-50 border border-rose-200 rounded-2xl p-6 flex flex-col h-full">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="bg-rose-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg">C</div>
+                        <h3 class="text-xl font-bold text-rose-900">Lado Opuesto y Ángulo Obtuso</h3>
+                    </div>
+                    <p class="text-rose-800 mb-4 flex-grow">Si un triángulo tiene un ángulo obtuso (mayor a 90°), el lado opuesto a ese ángulo debe ser estrictamente el más largo.</p>
+                    <div class="bg-white p-4 rounded-lg border border-rose-100">
+                        <p class="text-sm font-bold text-rose-600 uppercase mb-1">Es imposible si:</p>
+                        <p class="text-sm font-medium text-slate-700 bg-slate-100 p-3 rounded text-center">Lado Opuesto ≤ Otros Lados</p>
+                    </div>
+                </div>
+
+                <div class="bg-rose-50 border border-rose-200 rounded-2xl p-6 flex flex-col h-full">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="bg-rose-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg">D</div>
+                        <h3 class="text-xl font-bold text-rose-900">El "Brazo Corto" (LLA)</h3>
+                    </div>
+                    <p class="text-rose-800 mb-4 flex-grow">Ocurre cuando el lado que debe cerrar el triángulo no tiene la longitud suficiente para llegar a la base.</p>
+                    <div class="bg-white p-4 rounded-lg border border-rose-100">
+                        <p class="text-sm font-bold text-rose-600 uppercase mb-1">Es imposible si:</p>
+                        <p class="text-lg font-mono text-slate-800 bg-slate-100 p-2 rounded text-center">a < h</p>
+                        <p class="text-sm text-slate-500 mt-2">El lado opuesto al ángulo es menor que la altura calculada.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tabla" class="pt-8">
+            <h2 class="text-2xl font-bold text-indigo-900 mb-6 text-center">Tabla de Referencia Rápida</h2>
+            <div class="overflow-x-auto bg-white rounded-xl shadow-md border border-slate-200">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-indigo-50 text-indigo-900 border-b-2 border-indigo-200">
+                            <th class="p-4 font-bold w-1/3">Si te proporcionan...</th>
+                            <th class="p-4 font-bold">Es IMPOSIBLE construirlo si...</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-slate-700">
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="p-4 font-semibold text-indigo-700">3 Lados (LLL)</td>
+                            <td class="p-4">El lado mayor es mayor o igual a la suma de los otros dos lados.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="p-4 font-semibold text-indigo-700">2 Ángulos (ALA)</td>
+                            <td class="p-4">La suma de ambos ángulos conocidos es mayor o igual a 180°.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="p-4 font-semibold text-indigo-700">2 Lados y 1 Ángulo opuesto (LLA)</td>
+                            <td class="p-4">El lado opuesto es menor que la altura calculada (<span class="font-mono bg-slate-100 px-1 rounded">a < b · sen A</span>).</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="p-4 font-semibold text-indigo-700">Un Ángulo Obtuso</td>
+                            <td class="p-4">El lado opuesto a ese ángulo no es el lado más largo de todos los segmentos dados.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-12">
+        <p class="text-sm">Infografía Interactiva Generada a partir de los Criterios de Congruencia y Caso Ambiguo.</p>
+    </footer>
+
+    <script>
+        const rawLabels = [
+            "Ángulo Agudo: Lado opuesto menor que la altura (a < h)",
+            "Ángulo Agudo: Lado opuesto exactamente igual a la altura (a = h)",
+            "Ángulo Agudo: Altura menor que lado opuesto, menor que adyacente (h < a < b)",
+            "Ángulo Agudo: Lado opuesto mayor o igual al adyacente (a >= b)",
+            "Ángulo Obtuso: Lado opuesto menor o igual al adyacente (a <= b)",
+            "Ángulo Obtuso: Lado opuesto estrictamente mayor que adyacente (a > b)"
+        ];
+
+        const processedLabels = rawLabels.map(label => {
+            if (label.length > 16) {
+                const words = label.split(' ');
+                let lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > 16) {
+                        if (currentLine.trim() !== '') lines.push(currentLine.trim());
+                        currentLine = word + ' ';
+                    } else {
+                        currentLine += word + ' ';
+                    }
+                });
+                if (currentLine.trim() !== '') lines.push(currentLine.trim());
+                return lines;
+            }
+            return label;
+        });
+
+        const ctx = document.getElementById('ambiguousChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: processedLabels,
+                datasets: [{
+                    label: 'Cantidad de Triángulos Posibles',
+                    data: [0, 1, 2, 1, 0, 1],
+                    backgroundColor: [
+                        '#F43F5E', 
+                        '#10B981', 
+                        '#3B82F6', 
+                        '#10B981', 
+                        '#F43F5E', 
+                        '#10B981'  
+                    ],
+                    borderRadius: 6,
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                } else {
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1,
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Número de Triángulos Posibles',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                size: 11
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
